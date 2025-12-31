@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Profile Thông Tin Thanh Toán - DangKhoa.Com</title>
+    <link rel="shortcut icon" href="https://i.imgur.com/mruOsLm.jpg" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link id="dark-style" class="dark-theme" rel="stylesheet" href="./assets/styles/style-dark.css">
+    
+    <style>
+        /* 1. VIDEO NỀN */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        /* 2. XÓA BỎ HOÀN TOÀN THANH DỌC & NỀN TỐI */
+        .box, .sidebar, .box-inner, .case-item, .box__second, .sticky-column, .sticky-parent, aside {
+            background: transparent !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        /* Xóa các thanh kẻ dọc trang trí của template */
+        .title__separate::before, 
+        .title__separate::after,
+        .box-inner::before,
+        .box-inner::after,
+        .title::before,
+        .title::after {
+            display: none !important;
+            content: none !important;
+            background: none !important;
+            width: 0 !important;
+        }
+
+        /* Khử border mặc định có thể gây ra vệt đen */
+        * {
+            border-left: none !important;
+        }
+
+        /* Ẩn thanh cuộn */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 3. CHỈNH MÀU FONT CHỮ */
+        .td-name {
+            color: #00f2ff !important;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+            margin-top: 15px;
+        }
+        
+        .td-bio {
+            color: #ffeb3b !important;
+            background: transparent !important;
+            font-size: 14px;
+        }
+
+        .title, h1, h2, h3, h4, h5 {
+            color: #ffffff !important;
+        }
+
+        .case-item__caption, p, span, .footer {
+            color: #e0e0e0 !important;
+        }
+
+        /* 4. NÚT ĐIỀU KHIỂN NHẠC */
+        .music-wrapper {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #music-control { cursor: pointer; color: #fff; font-size: 18px; margin-right: 10px; }
+        #volume-slider { width: 0; opacity: 0; transition: 0.3s; cursor: pointer; height: 4px; }
+        .music-wrapper:hover #volume-slider { width: 80px; opacity: 1; }
+
+        /* Tinh chỉnh Avatar */
+        .ft-logo { 
+            border-radius: 50%; 
+            border: 2px solid #00f2ff; 
+            width: 120px; 
+            height: 120px; 
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+
+        .bg-triangles { background: none !important; }
+        .main { position: relative; z-index: 1; }
+        
+        /* Progress bar */
+        .progress { background-color: rgba(255, 255, 255, 0.1) !important; border-radius: 10px; height: 12px; }
+        .progress-bar { background: linear-gradient(90deg, #00f2ff, #0062ff) !important; }
+
+        /* Nút QR */
+        .btn--blue-gradient {
+            background: linear-gradient(90deg, #00f2ff, #0062ff);
+            color: white !important;
+            border: none;
+            padding: 10px 25px;
+            transition: 0.3s;
+        }
+        .btn--blue-gradient:hover { transform: scale(1.05); }
+    </style>
+</head>
+
+<body class="bg-triangles">
+    <video autoplay muted loop playsinline id="video-background">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+    <audio id="bg-music" loop>
+        <source src="musicc.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-wrapper">
+        <div id="music-control">
+            <i id="music-icon" class="fa fa-volume-up"></i>
+        </div>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <main class="main">
+        <div class="container gutter-top">
+            <div class="row">
+                <aside class="col-12 col-xl-3">
+                    <div class="sidebar text-center">
+                        <img class="ft-logo" src="https://i.imgur.com/mvVZNw9.jpeg" alt="Avatar" />
+                        <h3 class="title title--h3 td-name">
+                            <span class="weight--500">Hoàng Đăng Khoa</span>
+                            <div class="td-bio">@dangkhoa.py</div>
+                        </h3>
+                        <div class="sidebar__info mt-3">
+                            <a class="btn btn--blue-gradient" href="https://i.imgur.com/2I4cJQ4.png" style="border-radius: 30px;">Quét Mã QR-Code</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="col-12 col-xl-9">
+                    <div class="box-inner">
+                        <h1 class="title title--h3">Info Payments</h1>
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="case-item d-flex align-items-center">
+                                    <img class="case-item__icon mr-3" src="https://i.imgur.com/hX9rMfj.png" width="45" />
+                                    <div>
+                                        <h3 class="title title--h5 mb-1">Mb Bank</h3>
+                                        <p class="case-item__caption mb-0">
+                                            STK: 241241207 &nbsp;<i data-copy="241241207" class="fa fa-copy" style="cursor:pointer" onclick="copyToClipboard(this)"></i>
+                                            <br>CTK: NGUYEN ANH KIET &nbsp;<i data-copy="NGUYEN ANH KIET" class="fa fa-copy" style="cursor:pointer" onclick="copyToClipboard(this)"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-inner mt-4">
+                        <h2 class="title title--h3">About Me</h2>
+                        <div class="row">
+                            <div class="col-6">
+                                <h4 class="title title--h5">Python Dev</h4>
+                                <p>Chuyên thiết kế Tool & Website theo yêu cầu.</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="title title--h5">Dịch Vụ</h4>
+                                <p>Sell Tool Bot, Website giá rẻ, chất lượng cao.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-inner mt-4">
+                        <h2 class="title title--h3">Skill Language</h2>
+                        <div class="mb-3">
+                            <span class="d-block mb-1">Python 80%</span>
+                            <div class="progress"><div class="progress-bar" style="width: 80%"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <span class="d-block mb-1">HTML/CSS/JS 65%</span>
+                            <div class="progress"><div class="progress-bar" style="width: 65%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="footer text-center mt-5">
+                2023 ©️ - <a href="#" style="color: #00f2ff; text-decoration: none;">From Dang Khoa ❤️</a>
+            </footer>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+        const audio = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
+        const volumeSlider = document.getElementById('volume-slider');
+        const notyf = new Notyf({
+            duration: 2000,
+            position: { x: 'right', y: 'top' }
+        });
+
+        document.addEventListener('click', () => {
+            if (audio.paused) { 
+                audio.play().catch(e => console.log("Chờ tương tác để phát nhạc")); 
+                audio.volume = 0.5; 
+            }
+        }, { once: true });
+
+        document.getElementById('music-control').addEventListener('click', (e) => {
+            e.stopPropagation();
+            audio.muted = !audio.muted;
+            musicIcon.className = audio.muted ? 'fa fa-volume-off' : 'fa fa-volume-up';
+        });
+
+        volumeSlider.addEventListener('input', function() {
+            audio.volume = this.value;
+            musicIcon.className = this.value == 0 ? 'fa fa-volume-off' : 'fa fa-volume-up';
+        });
+
+        function copyToClipboard(element) {
+            const text = element.getAttribute('data-copy');
+            navigator.clipboard.writeText(text).then(() => {
+                notyf.success("Đã sao chép: " + text);
+            });
+        }
+    </script>
+</body>
+</html>
